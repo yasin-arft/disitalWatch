@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Digital Watch</title>
+	<!-- meta -->
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=0.1"/>
+	<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+	<!-- style -->
+	<style>
+		* {
+		  margin: 0;
+		  padding: 0;
+		}
+		.container {
+		  display: flex;
+		  height: 500px;
+		  width: 100%;
+		  align-items: center;
+		  justify-content: center;
+		}
+		.watch {
+		  display:block;
+		  height: 75px;
+		  width: 200px;
+		  background: #000;
+		  color: #19dfff;
+		  border-radius: 5px;
+		  position: relative;
+		}
+		.container h1 {
+		  line-height: 2.15;
+		  text-align: center;
+		}
+	</style>
+</head>
+<body>
+
+	<!--markup-->
+	<div class="container">
+		<div class="watch">
+			<h1 id="wtc"></h1>
+		</div>
+	</div>
+	
+	<!--function-->
+	<script>
+		function watch() {
+		  const d = new Date();
+		  let hrs = d.getHours();
+		  let mnts = d.getMinutes();
+		  let scnds = d.getSeconds();
+		  let time = "";
+			if (hrs > 12) {
+			    hrs-= 12;
+			}else if (hrs = 0) {
+				hrs+=12
+			}
+			if (mnts < 10) {
+				mnts = "0" + mnts
+			}
+			if (scnds < 10) {
+				scnds = "0" + scnds
+			}
+			time = hrs + ":" + mnts + ":" + scnds;
+			if (d.getHours() > 12) {
+				time += " pm";
+			}else{
+				time += " am";
+			}
+			document.getElementById("wtc").innerHTML =  time;
+		}
+		
+		setInterval(watch, 1000);
+	</script>
+	
+</body>
+</html>
